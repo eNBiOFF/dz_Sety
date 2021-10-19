@@ -7,17 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Examples</title>
     <script src='https://requirejs.org/docs/release/2.3.6/minified/require.js'></script>
+    <link href="./style.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="init_info">
         <div class="header">ДЗ по сетям. Демонстрация работы программы</div>
+    </div>
+    <div class="variant_info">
         <div>Информационный вход:<span id='info_vhod'> 1010</span></div>
         <div>Код Х[7,4]</div>
-        <div>закодированный информациddddонный код : 1010010</div>
+        <div>закодированный информационный код : 1010010</div>
     </div>
     <div class="error_info">
-        <input id='inp' placeholder="введите количество единиц( 1 - 7 )">
+        <div style="font-size: 24px; color: white;">Введите количество единиц( 1 - 7) </div>
+        <input id='inp' placeholder="1" value="1">
         <button id='but'>ОК</button>
     </div>
     <div class='decode_info'>
