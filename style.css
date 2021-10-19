@@ -1,0 +1,49 @@
+body {
+    background-color: #181818;
+}
+
+.init_info {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 32px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.variant_info {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#inp {
+    width: 350px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #313133;
+    border-color: black;
+    color: white;
+    font-size: 22px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-top: 6px;
+    color: grey;
+}
+
+#but {
+    width: 100px;
+    height: 40px;
+    font-size: 22px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: grey;
+    color: white;
+}
+
+.decode_info {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
