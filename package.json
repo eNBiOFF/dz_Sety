@@ -1,0 +1,19 @@
+{
+    "name": "y",
+    "version": "1.0.0",
+    "description": "",
+    "workspaces": [
+        "./"
+    ],
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "jest": "^26.6.3"
+    },
+    "scripts": {
+        "start": "node server.js"
+    },
+    "author": "Nikita Bakhramov",
+    "license": "ISC"
+}
