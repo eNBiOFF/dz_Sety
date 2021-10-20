@@ -36,11 +36,17 @@ function er_binary(num, k) {
     return arr;
 }
 
-function lislice(str, index) {
+
+function lislice(str, index, arr, No) {
     // str - входная строка для изменения 
     // i -  позиция символа для инвертирования
+
     let res = [];
     index = str.length - index;
+    if (arr[index] == '1') {
+        No++;
+        console.log(No)
+    }
     for (let i = 0; i < str.length; i++) {
         if (i == index) {
             res.push((parseInt(str[i], 2) ^ 1).toString(2));
@@ -48,7 +54,7 @@ function lislice(str, index) {
             res.push(str[i]);
         }
     }
-    return res.join('');
+    return { rs: res.join(''), numb: No }
 }
 // вспомогательная функция замены символа в строке
 function plus_mod(a, b) {
@@ -74,26 +80,29 @@ function syndrome(str) {
     return syn_arr.reverse().join('');
 }
 // находим синдром ошибки 
-
-// декудируем сообщение и cчитаем исправленные ошибки
-function decode(str_arr) {
+let noer_str = { rs: '', numb: 0 }
+    // декудируем сообщение и cчитаем исправленные ошибки
+function decode(str_arr, arr) {
     // str_arr - массив полученных кодовых комбинаций с ошибками 
+
     let N = 0;
+    noer_str.numb = 0;
     for (let i = 0; i < str_arr.length; i++) {
         let syn = syndrome(str_arr[i]);
-        console.log(syn);
+        // console.log(syn);
         let index = parseInt(syn, 2);
-        console.log(str_arr[i]);
-        let noer_str = lislice(str_arr[i], index);
-        if (noer_str == '1010010') {
+        // console.log(str_arr[i]);
+        noer_str = lislice(str_arr[i], index, arr[i], noer_str.numb);
+
+        if (noer_str.rs == '1010010') {
             N++;
-            console.log('ошибка исправлена')
+            // console.log('ошибка исправлена')
         } else {
-            console.log(noer_str);
-            console.log('ошибка не исправлена')
+            // console.log(noer_str);
+            // console.log('ошибка не исправлена')
         }
     }
-    return N;
+    return { isp: N, obn: noer_str.numb };
 
 }
 
@@ -104,15 +113,16 @@ const corr_spos = document.getElementById('corr_spos');
 const but = document.getElementById('but');
 const info_vhod = document.getElementById('info_vhod');
 console.log('lol')
-let n = 0;
+let n = {};
 let cd_arr = [];
 but.addEventListener('click', () => {
     arr = [];
     cd_arr = []
     er_binary(7, parseInt(inp.value));
     cd_arr = code('1010010', arr);
-    n = decode(cd_arr);
-    N.innerHTML = 'Количество исправленных ошибок: ' + n;
-    C.innerHTML = 'Количество кодов с ошбикой по кратности единич в векторе ошибки: ' + cd_arr.length;
-    corr_spos.innerHTML = 'Корректирующая способность: ' + Math.floor(n / cd_arr.length) * 100 + '%';
+    n = decode(cd_arr, arr);
+    console.log(n.isp)
+    N.innerHTML = 'Количество исправленных ошибок: ' + n.isp;
+    C.innerHTML = 'Количество обнаруженных ошибок ' + n.obn;
+    corr_spos.innerHTML = 'Корректирующая способность: ' + Math.floor(n.isp / cd_arr.length) * 100 + '%';
 })
