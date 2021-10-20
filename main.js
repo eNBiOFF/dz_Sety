@@ -42,11 +42,14 @@ function lislice(str, index, arr, No) {
     // i -  позиция символа для инвертирования
 
     let res = [];
-    index = str.length - index;
-    if (arr[index] == '1') {
+    if (index > 0) {
         No++;
         console.log(No)
     }
+    index = str.length - index;
+    console.log(index);
+    console.log(arr);
+
     for (let i = 0; i < str.length; i++) {
         if (i == index) {
             res.push((parseInt(str[i], 2) ^ 1).toString(2));
